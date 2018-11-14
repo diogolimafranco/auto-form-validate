@@ -89,8 +89,7 @@ O autoFormValidate retorna um array contendo em cada index, um objeto com duas p
 ```
 
 ## Tipos de Validação / Validation Types
-**cellphone** 
-Valida se o valor informado é um número de celular válido no formato **(99) 99999-9999**
+**cellphone** Valida se o valor informado é um número de celular válido no formato **(99) 99999-9999**
 ```html
 <input type="text" data-validity="cellphone">
 ```
