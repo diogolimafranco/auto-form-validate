@@ -28,7 +28,7 @@ Temos duas forma de utilizar o *autoFormValidate*:
   window.autoFormValidate()
 
   // Validar um formulário específico
-  window.autoFormValidate(document.querySelector(*#formId*))
+  window.autoFormValidate(document.querySelector('#formId'))
 </script>
 ```
 
@@ -58,7 +58,7 @@ Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando
 
 ```js
 <script>
-  window.autoFormValidate(document.querySelector(*#formId*), {
+  window.autoFormValidate(document.querySelector('#formId'), {
     done: (event) => {
       event.preventDefault()
       alert(*Passou na validação*) 
