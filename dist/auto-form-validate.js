@@ -232,6 +232,10 @@ var _this = void 0;
 window.autoFormValidate(null, {
   done: function done(event) {
     event.preventDefault();
+    alert('Passou na validação');
+  },
+  fail: function fail(event) {
+    event.preventDefault();
+    alert('Reprovou na validação');
   }
 });
-//# sourceMappingURL=index.js.map

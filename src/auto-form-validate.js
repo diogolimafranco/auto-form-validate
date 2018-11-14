@@ -257,6 +257,11 @@
 
 window.autoFormValidate(null, {
   done: event => {
-    event.preventDefault()  
+    event.preventDefault()
+    alert('Passou na validação') 
+  },
+  fail: event => {
+    event.preventDefault()
+    alert('Reprovou na validação')
   }
 })

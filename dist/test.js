@@ -96,4 +96,3 @@ console.log("Valida\xE7\xE3o string arquivo pdf");
 test.forEach(function (item, idx) {
   console.log(idx + ' ' + Validate.isVideo(item));
 });
-//# sourceMappingURL=test.js.map
