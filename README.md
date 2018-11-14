@@ -2,7 +2,7 @@
 Uma pequena lib javascript para validação automática de formulários html
 
 ## Dependências
-A 'autoFormValidate' tem como dependência a lib [validate.js](https://github.com/diogolimafranco/validate.js)
+A *autoFormValidate* tem como dependência a lib [validate.js](https://github.com/diogolimafranco/validate.js)
 
 ## Instalação
 ```js
@@ -10,7 +10,7 @@ A 'autoFormValidate' tem como dependência a lib [validate.js](https://github.co
 ```
 
 ## Implementação
-Após a importação, a lib fica acessível globalmente através da propriedade 'autoFormValidate'
+Após a importação, a lib fica acessível globalmente através da propriedade *autoFormValidate*
 
 ```js
 <script>
@@ -18,7 +18,7 @@ Após a importação, a lib fica acessível globalmente através da propriedade 
 </script>
 ```
 ## Modos de uso
-Temos duas forma de utilizar o 'autoFormValidate':
+Temos duas forma de utilizar o *autoFormValidate*:
 * Validar todos os formulários da página
 * Validar um formulário específico
 
@@ -28,7 +28,7 @@ Temos duas forma de utilizar o 'autoFormValidate':
   window.autoFormValidate()
 
   // Validar um formulário específico
-  window.autoFormValidate(document.querySelector('#formId'))
+  window.autoFormValidate(document.querySelector(*#formId*))
 </script>
 ```
 
@@ -52,20 +52,20 @@ Validar se o campo email foi preenchido e se o valor preenchido é um email vál
 ```
 
 ## Callbacks
-Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando seu submit até que todos os campos estejam preenchidos corretamente. Caso seu formulário seja enviado via 'AJAX', utilize os médotos .done() e .fail() passados como parâmetro em um objeto options.
+Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando seu submit até que todos os campos estejam preenchidos corretamente. Caso seu formulário seja enviado via *AJAX*, utilize os médotos .done() e .fail() passados como parâmetro em um objeto options.
 
 | O parâmetro `event` deve ser fornecido para evitar o defaul event do formulário e ter acesso aos elementos do formulário validado
 
 ```js
 <script>
-  window.autoFormValidate(document.querySelector('#formId'), {
+  window.autoFormValidate(document.querySelector(*#formId*), {
     done: (event) => {
       event.preventDefault()
-      alert('Passou na validação') 
+      alert(*Passou na validação*) 
     },
     fail: (event) => {
       event.preventDefault()
-      alert('Reprovou na validação')
+      alert(*Reprovou na validação*)
     }
   })
 </script>
