@@ -66,7 +66,7 @@ Validar se o campo email foi preenchido e se o valor preenchido é um email vál
 <input type="text" data-validity="required email">
 ```
 
-> O autoFormValidate aceita o atribute `required` em sua validação, assim, se o campo é de preenchimento obrigatório, basta utilizar o attribute html5 `required`
+> O autoFormValidate aceita o atributo `required` em sua validação, assim, se o campo é de preenchimento obrigatório, basta utilizar o attribute html5 `required`
 
 ```html
 <input type="text" required>
