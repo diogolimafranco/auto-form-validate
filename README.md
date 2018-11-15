@@ -34,9 +34,13 @@ Temos duas forma de utilizar o **autoFormValidate**:
 
 ## Definindo o modo de validação
 A lib autoFormValidate pode facilitar muito a sua vida com alguns recursos úteis, como:
+
 `data-alert="true"` Faz com que seja apresentado um alert `javascript` na tela com a lista de erros
+
 `data-feedback="true"` Faz com que o campo errado receba um feedback visual, uma borda vermelha
+
 `data-debug="true"` Faz um `console.log` apresentando a lista de erros no console do Navegador
+
 > Utilize o modo `data-debug="true"` enquanto estiver desenvolvendo, remova este atributo em produção.
 
 ```html
@@ -44,6 +48,7 @@ A lib autoFormValidate pode facilitar muito a sua vida com alguns recursos útei
 <!-- Caso você não queira utilizar algum ou todos os atributos de definição -->
 <form id="formId" data-alert="true">
 ```
+
 *Você pode mudar o modo de feedback e alert através dos métodos `done(event)` ou `fail(event, errors)` na função de execução, descrito mais abaixo*
 
 ## Definindo o tipo de validação / tipo de dado
