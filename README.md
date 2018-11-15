@@ -82,8 +82,8 @@ Por padrão, a lib autoFormValidate utiliza o atributo `name="NomeDoCampo"` para
 <!--Retorna: O campo Address não pode estar vazio-->
 ```
 
-## Tipos de Validação / Validation Types
-Para setar o tipo de validação de um elementForm, basta adicionar o atributo `data-validity=""`, definindo o nome da validação a ser utilizado. Veja a lista de validações disponíveis:
+## Tipos de Validação
+Para setar o tipo de validação de um elemento, basta adicionar o atributo `data-validity=""`, definindo o nome da validação a ser utilizado. Veja a lista de validações disponíveis:
 
 ### cellphone
 Valida se o valor informado é um número de celular válido no formato **(99) 99999-9999**
@@ -174,13 +174,13 @@ Validar se o valor informado no campo do tipo string é uma url válido
 ```
 
 ### zip
-Validar se o valor informado no campo do tipo é um número de CEP válido no formato **99999-999**
+Validar se o valor informado no campo do tipo string é um número de CEP válido no formato **99999-999**
 ```html
 <input type="text" data-validity="zip">
 ```
 
 ## Callbacks
-Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando seu submit até que todos os campos estejam preenchidos corretamente. Caso seu formulário seja enviado via **AJAX**, utilize os médotos `.done()` e `.fail()` passados como parâmetro em um objeto options.
+Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando seu submit até que todos os campos estejam preenchidos corretamente. Caso seu formulário seja enviado via **AJAX**, utilize os médotos `.done(event)` e `.fail(event,errors)`, passados como parâmetro na definição da função `autoFormValidate()`.
 
 > O parâmetro `event` deve ser fornecido em ambos os métodos para evitar o defaulEvent do formulário e ter acesso aos elementos do formulário validado
 
@@ -193,11 +193,21 @@ Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando
     }
   })
 </script>
+```
 
 > O parâmetro `errors` deve ser fornecido ao método `.fail()` para ter acesso ao `array` de erros encontrados
 
 ```js
 <script>
+  // O mesmo callback de erro para um ou mais formulários
+  window.autoFormValidate(null, {
+    fail: (event, errors) => {
+      event.preventDefault()
+      alert(**Reprovou na validação**)
+    }
+  })
+
+  // Callback de erro definido para um formulário específico
   window.autoFormValidate(document.querySelector('#formId'), {
     fail: (event, errors) => {
       event.preventDefault()
@@ -205,8 +215,9 @@ Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando
     }
   })
 </script>
+```
 
-> O modelo abaixo atua com os dois modos de feedback
+> O modelo abaixo apresenta com os dois métodos de feedback podem ser aplicados
 
 ```js
 <script>
@@ -228,7 +239,7 @@ Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando
 ## Retorno da validação
 O autoFormValidate não retorna nenhum dado através de sua definição;
 
-Para ter acesso a lista de erros, defina na tag **form** o atributo `data-debug="true"` para ver os valores impressos no seu console de desenvolvedor
+Para visualizar a lista de erros, defina na tag **form** o atributo `data-debug="true"` para ver os valores impressos no seu console de desenvolvedor
 
 > Para trabalhar com os erros encontrados, utilize o método `fail(event, errors)` do objeto de configuração autoFormValidate
 
@@ -244,9 +255,13 @@ Para ter acesso a lista de erros, defina na tag **form** o atributo `data-debug=
   })
 </script>
 ```
-A variável `errors` fornecido como parâmetro à função `fail(event, errors)` é um array, onde cada index possui um objeto com duas propriedades
+A variável `errors` fornecido como parâmetro à função `fail(event, errors)` é um array, onde cada index possui um objeto com duas propriedades:
+
 `errors`:  Um array de erros com respostas pré definidas
+
 `el`: O nodeElement validado
+
+> O objeto `json` abaixo exemplifica o valor da variável `errors` retornado ao final da validação de todos os campos do formulário
 
 ```json
 <script>
