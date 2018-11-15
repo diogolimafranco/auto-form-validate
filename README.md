@@ -51,8 +51,6 @@ A lib autoFormValidate pode facilitar muito a sua vida com alguns recursos útei
 
 *Você pode mudar o modo de feedback e alert através dos métodos `done(event)` ou `fail(event, errors)` na função de execução, descrito mais abaixo*
 
-
-
 ## Definindo o tipo de validação / tipo de dado
 A lib autoFormValidate utiliza as validações da lib [validate.js](https://github.com/diogolimafranco/validate.js) para validação dos formulários, mas você pode extender editando o arquivo existente dentro da pasta src.
 
@@ -67,7 +65,9 @@ Validar se o campo email foi preenchido e se o valor preenchido é um email vál
 ```html
 <input type="text" data-validity="required email">
 ```
-| O autoFormValidate aceita o atribute `required` em sua validação, assim, se o campo é de preenchimento obrigatório, basta utilizar o attribute html5 `required`
+
+> O autoFormValidate aceita o atribute `required` em sua validação, assim, se o campo é de preenchimento obrigatório, basta utilizar o attribute html5 `required`
+
 ```html
 <input type="text" required>
 ```
