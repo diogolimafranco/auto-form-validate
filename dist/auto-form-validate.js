@@ -179,7 +179,7 @@ var _this = void 0;
     var style = function style() {
       var style = document.createElement('style');
       style.innerHTML = ".validity-error {\n          -webkit-box-shadow: 0px 0px 5px 1px rgba(255,5,5,1);\n          -moz-box-shadow: 0px 0px 5px 1px rgba(255,5,5,1);\n          box-shadow: 0px 0px 5px 1px rgba(255,5,5,1);\n        }";
-      document.head.append(style);
+      document.querySelector('head').appendChild(style);
     }; // Inicia a validação do formulário
 
 
@@ -247,4 +247,3 @@ window.autoFormValidate(); // window.autoFormValidate(null, {
 //     alert('Reprovou na validação')
 //   }
 // })
-//# sourceMappingURL=auto-form-validate.js.map

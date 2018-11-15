@@ -7,7 +7,8 @@
     "minify": "uglifyjs dist/auto-form-validate.js --compress --mangle --warn --output dist/auto-form-validate.min.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
-    "watch": "babel src -d dist --source-maps --watch"
+    "watch": "babel src -d dist --source-maps --watch",
+    "polyfill": "babel-polyfill dist/polyfill.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,11 @@
   "dependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
+    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
     "uglify-js": "^3.4.9"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0"
   }
 }

@@ -194,7 +194,7 @@
           -moz-box-shadow: 0px 0px 5px 1px rgba(255,5,5,1);
           box-shadow: 0px 0px 5px 1px rgba(255,5,5,1);
         }`
-      document.head.append(style)
+      document.querySelector('head').appendChild(style)
     }
 
     // Inicia a validação do formulário
