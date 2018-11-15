@@ -156,13 +156,7 @@
       }
     }
 
-    // Caso feedback esteja ativo, apresenta as mensagens de erro com feedback color red no campo validado
-    const feedback = errors => {
-      // Escuta o evento change dos campos inválidos
-      const changeHandler = () => {
-        event.target.classList.remove('validity-error')
-        event.target.removeEventListener('change',changeHandler)
-      }
+    const alertModal = errors => {
 
       // Abre a janela para apresentação dos erros
       const dialog = errors => {
@@ -174,10 +168,17 @@
           alert(message)
         }
       }
-
       // Mostra os erros
       dialog(errors)
+    }
 
+    // Caso feedback esteja ativo, apresenta as mensagens de erro com feedback color red no campo validado
+    const feedback = errors => {
+      // Escuta o evento change dos campos inválidos
+      const changeHandler = () => {
+        event.target.classList.remove('validity-error')
+        event.target.removeEventListener('change',changeHandler)
+      }
       // Varre os inputs inválidos para aplicar a class de feedback validity-error
       errors.forEach(idx => {
         idx.el.classList.add('validity-error')
@@ -200,6 +201,8 @@
     const init = event => {
       const form = event.target
       const isFeedback = form.dataset.feedback ? true : false
+      const isAlert = form.dataset.alert ? true : false
+      const isDebug = form.dataset.debug ? true : false
       const elements = Array.from(form.elements)
       const errors = []
       elements.forEach(el => {
@@ -219,11 +222,17 @@
       if (errors.length > 0) {
         event.preventDefault()
 
+        if (isDebug)
+          console.log(errors)
+
         // Se uma função de callback erro foi definida
         if (options && options.fail && typeof options.fail === 'function') {
-          options.fail.call(this, errors)
+          options.fail.call(this, event, errors)
           return
         }
+
+        if (isAlert)
+          alertModal(errors)
 
         if (isFeedback) {
           style()
@@ -254,14 +263,14 @@
   }
   window.autoFormValidate = autoFormValidate
 })()
-
-window.autoFormValidate(null, {
-  done: event => {
-    event.preventDefault()
-    alert('Passou na validação') 
-  },
-  fail: event => {
-    event.preventDefault()
-    alert('Reprovou na validação')
-  }
-})
+window.autoFormValidate()
+// window.autoFormValidate(null, {
+//   done: (event, errors) => {
+//     event.preventDefault()
+//     alert('Passou na validação') 
+//   },
+//   fail: event => {
+//     event.preventDefault()
+//     alert('Reprovou na validação')
+//   }
+// })

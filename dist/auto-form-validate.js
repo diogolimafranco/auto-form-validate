@@ -142,17 +142,10 @@ var _this = void 0;
         el: el,
         errors: errors
       };
-    }; // Caso feedback esteja ativo, apresenta as mensagens de erro com feedback color red no campo validado
+    };
 
-
-    var feedback = function feedback(errors) {
-      // Escuta o evento change dos campos inválidos
-      var changeHandler = function changeHandler() {
-        event.target.classList.remove('validity-error');
-        event.target.removeEventListener('change', changeHandler);
-      }; // Abre a janela para apresentação dos erros
-
-
+    var alertModal = function alertModal(errors) {
+      // Abre a janela para apresentação dos erros
       var dialog = function dialog(errors) {
         if (errors.length > 0) {
           var message = 'Ops! Encontramos alguns erros \n\n';
@@ -164,7 +157,17 @@ var _this = void 0;
       }; // Mostra os erros
 
 
-      dialog(errors); // Varre os inputs inválidos para aplicar a class de feedback validity-error
+      dialog(errors);
+    }; // Caso feedback esteja ativo, apresenta as mensagens de erro com feedback color red no campo validado
+
+
+    var feedback = function feedback(errors) {
+      // Escuta o evento change dos campos inválidos
+      var changeHandler = function changeHandler() {
+        event.target.classList.remove('validity-error');
+        event.target.removeEventListener('change', changeHandler);
+      }; // Varre os inputs inválidos para aplicar a class de feedback validity-error
+
 
       errors.forEach(function (idx) {
         idx.el.classList.add('validity-error');
@@ -183,6 +186,8 @@ var _this = void 0;
     var init = function init(event) {
       var form = event.target;
       var isFeedback = form.dataset.feedback ? true : false;
+      var isAlert = form.dataset.alert ? true : false;
+      var isDebug = form.dataset.debug ? true : false;
       var elements = Array.from(form.elements);
       var errors = [];
       elements.forEach(function (el) {
@@ -194,12 +199,15 @@ var _this = void 0;
       }); // Se foram encontrados erros
 
       if (errors.length > 0) {
-        event.preventDefault(); // Se uma função de callback erro foi definida
+        event.preventDefault();
+        if (isDebug) console.log(errors); // Se uma função de callback erro foi definida
 
         if (options && options.fail && typeof options.fail === 'function') {
-          options.fail.call(_this, errors);
+          options.fail.call(_this, event, errors);
           return;
         }
+
+        if (isAlert) alertModal(errors);
 
         if (isFeedback) {
           style();
@@ -229,13 +237,14 @@ var _this = void 0;
   window.autoFormValidate = autoFormValidate;
 })();
 
-window.autoFormValidate(null, {
-  done: function done(event) {
-    event.preventDefault();
-    alert('Passou na validação');
-  },
-  fail: function fail(event) {
-    event.preventDefault();
-    alert('Reprovou na validação');
-  }
-});
+window.autoFormValidate(); // window.autoFormValidate(null, {
+//   done: (event, errors) => {
+//     event.preventDefault()
+//     alert('Passou na validação') 
+//   },
+//   fail: event => {
+//     event.preventDefault()
+//     alert('Reprovou na validação')
+//   }
+// })
+//# sourceMappingURL=auto-form-validate.js.map
