@@ -44,12 +44,14 @@ A lib autoFormValidate pode facilitar muito a sua vida com alguns recursos útei
 > Utilize o modo `data-debug="true"` enquanto estiver desenvolvendo, remova este atributo em produção.
 
 ```html
-<form id="formId" data-feedback="true" data-alert="true" data-debug="false">
-<!-- Caso você não queira utilizar algum ou todos os atributos de definição -->
+<form id="formId" data-feedback="true" data-alert="true" data-debug="true">
+<!-- Caso você não queira utilizar algum ou nenhum dos atributos de definição, basta removê-lo ou setá-lo como false -->
 <form id="formId" data-alert="true">
 ```
 
 *Você pode mudar o modo de feedback e alert através dos métodos `done(event)` ou `fail(event, errors)` na função de execução, descrito mais abaixo*
+
+
 
 ## Definindo o tipo de validação / tipo de dado
 A lib autoFormValidate utiliza as validações da lib [validate.js](https://github.com/diogolimafranco/validate.js) para validação dos formulários, mas você pode extender editando o arquivo existente dentro da pasta src.
