@@ -224,12 +224,12 @@ Por padrão, o autoFormValidate apenas valida os campos do formulário, evitando
   window.autoFormValidate(document.querySelector('#formId'), {
     done: (event) => {
       event.preventDefault()
-      alert(**Passou na validação**) 
+      alert('Passou na validação') 
       // $.ajax() Aqui vai seu método ajax
     },
     fail: (event, errors) => {
       event.preventDefault()
-      alert(**Reprovou na validação**)
+      alert('Reprovou na validação')
       // $.modal() Aqui vai sua apresentação personalizada dos erros
     }
   })
